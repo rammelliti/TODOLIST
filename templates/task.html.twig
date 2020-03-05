@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block Title %}
+Creer une tâche 
+{% endblock %}
+
+{% block Body %}
+{{ form_start(form, {'attr' : {'style' : 'widh:100%;'}})}}
+{{ form_widget(form)}}
+{{form_end(form)}}
+{% endblock %}}
