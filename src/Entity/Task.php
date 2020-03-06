@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TaskRepository")
@@ -31,6 +34,25 @@ class Task
      * @ORM\JoinColumn ()
      */
     private $listing;
+
+     /**
+     *  @ORM\Column(type="datetime", nullable=true)
+     */
+    
+    private $dueDate;
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     * @Assert\Range(
+     *      min = 5,
+     *      max = 240,
+     *      minMessage = "Vous devez configurer le rappel 
+     * au moins 5 minutes avant la date d'échéance de la tâche",
+     *      maxMessage = "Vous devez configurer le rappel 
+     * au plus 240 minutes avant la date d'échéance de la tâche"
+     * )
+     */
+
+    private $reminder;
 
     public function getId(): ?int
     {
@@ -75,5 +97,35 @@ class Task
     public function setListing (Listing $listing): void
     {
         $this->listing = $listing;
+    }
+    /**
+     * @return mixed
+     */
+    public function getDueDate()
+    {
+        return $this->dueDate;
+    }
+    /**
+     * @param mixed $dueDate
+     */
+    public function setDueDate($dueDate): void
+    {
+        $this->dueDate = $dueDate;
+
+    }
+    /**
+     * @return mixed
+     */
+    public function getReminder()
+    {
+        return $this->reminder;
+    }
+    /**
+     * @param mixed $reminder
+     */
+    public function setReminder($reminder): void
+    {
+        $this->reminder = $reminder;
+
     }
 }

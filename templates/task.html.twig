@@ -1,11 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block Title %}
+{% block title %}
 Creer une tâche 
 {% endblock %}
 
-{% block Body %}
-{{ form_start(form, {'attr' : {'style' : 'widh:100%;'}})}}
+{% block body %}
+{{ form_start(form, {'attr' : {'style' : 'width:100%;'}})  }}
 {{ form_widget(form)}}
 {{form_end(form)}}
-{% endblock %}}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(function() {
+            $('.datetimepicker').datetimepicker({
+                 sideBySide: true
+            })
+       })
+    </script>
+{% endblock %}        

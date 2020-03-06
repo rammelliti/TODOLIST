@@ -31,7 +31,7 @@ use Symfony\component\Routing\Annotation\Route;
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($$task);
+            $entityManager->persist($task);
             $entityManager->flush();
             return $this->redirectToRoute('listing_show',['listingId'=>$listingId]);
         }
